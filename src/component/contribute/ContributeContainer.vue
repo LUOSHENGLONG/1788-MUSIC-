@@ -69,7 +69,7 @@
                 <td style="text-align: center;">
                   <div style="text-align: center;">待审核</div>
                   <div style="text-align: center;">
-                    <a href="#" @click="batchRelease($event,item.id)" style="color: #54FF9F;">发布</a>
+                    <a href="#" @click="release($event,item.id)" style="color: #54FF9F;">发布</a>
                     <a href="#" @click="rejectMyContribute($event,item.id)" style="color: #FF6A6A;">驳回</a>
                     <a href="#" @click="checkArticle($event, item.id)" style="color: #8EE5EE;">查看</a>
                   </div>
@@ -147,7 +147,6 @@
             >
           </paginate>
         </div>
-        
     </div>
 </template>
 <script>
@@ -212,11 +211,19 @@ export default {
           }, 100);
         },
         // 发布单个
-        releaseMyContribute(e, id) {
+        release(e, id) {
           e.preventDefault();
           this.show = false
-          axios.post('http://127.0.0.1:3001/batchRelease',{batchId: id})
+          let article = {}
+          this.userContribute.forEach( item => {
+            if(item.id === id) {
+              article = item
+              return
+            }
+          })
+          axios.post('http://127.0.0.1:3001/releaseSingleArticle',{article: article})
           .then((result) => {
+            console.log(result.data)
           })
           setTimeout(() => {
             this.show = true
@@ -257,6 +264,7 @@ export default {
             this.page(this.currentPage)
           }, 100);
         },
+        // 分页
         page(e) {
           this.currentPage = e 
           this.getMyContribute()
@@ -306,6 +314,30 @@ export default {
             })
           })
         },
+        // 发布文章
+        releaseSingleArticle(id) {
+          this.show = false
+          // axios.post('http://127.0.0.1:3001/releaseSingleArticle',{id: id})
+          // .then((result) => {
+          //   console.log(result)
+          // })
+          
+        },
+        // deleteMyContribute
+        deleteMyContribute(e, id) {
+          e.preventDefault()
+          this.show = false
+          axios.post('http://127.0.0.1:3001/deleteMyContribute',{id: id})
+          .then((result) => {
+            console.log(result)
+          })
+          setTimeout(() => {
+            this.show = true
+            this.page(this.currentPage)
+          }, 100);
+
+        },
+        
     },
     components: {
       calendar
