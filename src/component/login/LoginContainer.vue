@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        1788 MUSIC
         <div class="login">
           <div class="login-form">
             <div class="form-group">
@@ -43,20 +44,20 @@ export default {
 .login {
     text-align: center;
     background: none;
-    background-color: #34495e;
     // padding: 100px 380px ;
-    height: 500px;
+    height: 100%;
     // border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .login-form {
-    padding: 10% 42%;
+    padding: 0 42%;
     margin-right: 0 !important;
     text-align: center;
     position: fixed;
     left: 50%;
     transform: translate(-50%);
-    background-color: #34495e;;
     top: 50;
     height: 100%;
     width: 100%;

@@ -1,7 +1,7 @@
 <template>
-    <div class="container" v-if="show">
+    <div class="container">
       <!-- 查询 -->
-        <div class="search">
+        <div class="search"  v-if="show">
           <div class="todo mrm">
             
             <div class="todo-search">
@@ -16,19 +16,19 @@
                 <option value="1">合成器</option>
                 <option value="2">效果器</option>
                 <option value="3">采样包</option>
-                <option value="3">宿主</option>
-                <option value="3">采样包</option>
+                <option value="4">宿主</option>
+                <option value="5">采样包</option>
               </select>
               <input class="todo-search-field" type="search" value="" placeholder="Search">
             </div>
           </div>
           <!-- <calendar :date.sync="dateString" :class-names="{panel: 'custom-panel'}"></calendar> -->
         </div>
-        <div class="bs-example" data-example-id="hoverable-table">
+        <div class="bs-example" data-example-id="hoverable-table"  v-if="show">
           <table class="table table-hover">
             <thead>
               <tr>
-                <th style="width: 50%">文章标题</th>
+                <th style="width: 50%;padding-left: 20px;">文章标题</th>
                 <th style="width: 15%;text-align: center;">文章类型</th>
                 <th style="width: 15%;text-align: center;">投稿时间</th>
                 <th style="width: 15%;text-align: center;">状态、操作</th>
@@ -38,7 +38,9 @@
             <tbody v-for="item in userContribute" :key="item.id">
               <!-- 已发布 -->
               <tr v-if="item.isRelease === 1">
-                <td scope="row">{{ item.title }}</td>
+                <td scope="row" style="padding-left: 20px;">
+                  <a href="#" @click="checkArticle($event, item.id)" style="color: #fff;">{{ item.title }}</a>
+                </td>
                 <td style="text-align: center;">{{ item.type | typeFormat }}</td>
                 <td style="text-align: center;">{{ item.contributeTime }}</td>
                 <td>
@@ -63,7 +65,7 @@
               </tr>
               <!-- 待审核 -->
               <tr v-if="item.isRelease === 0">
-                <td scope="row">{{ item.title }}</td>
+                <td scope="row" style="padding-left: 20px;">{{ item.title }}</td>
                 <td style="text-align: center;line-height: 280%">{{ item.type | typeFormat }}</td>
                 <td style="text-align: center;">{{ item.contributeTime }}</td>
                 <td style="text-align: center;">
@@ -89,7 +91,7 @@
               </tr>
               <!-- 已驳回 -->
               <tr v-if="item.isRelease === -1">
-                <td scope="row">{{ item.title }}</td>
+                <td scope="row" style="padding-left: 20px;">{{ item.title }}</td>
                 <td style="text-align: center;line-height: 280%">{{ item.type | typeFormat }}</td>
                 <td style="text-align: center;">{{ item.contributeTime }}</td>
                 <td style="text-align: center;">
@@ -228,7 +230,7 @@ export default {
           setTimeout(() => {
             this.show = true
             this.page(this.currentPage)
-          }, 100);
+          }, 1);
         },
         // 驳回单个
         rejectMyContribute(e, id) {
@@ -350,6 +352,7 @@ export default {
   background-color: #34495e;
   border-radius: 8px;
   margin-top: 0;
+  padding: 0;
   padding-top: 10px;
   position: relative;
 }

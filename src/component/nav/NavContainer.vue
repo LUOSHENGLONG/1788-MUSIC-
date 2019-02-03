@@ -20,20 +20,13 @@
                   </ul>
                 </li>
                 <li><router-link to="/contribute">投稿审核</router-link></li>
-                <li><router-link to="/">新的评论</router-link></li>
+                <li><router-link to="/comments">新的评论</router-link></li>
+                <li><router-link to="/images">图片管理</router-link></li>
+                <li><router-link to="/">反馈</router-link></li>
                </ul>
-               <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-                    <span class="input-group-btn">
-                      <button type="submit" class="btn"><span class="fui-search"></span></button>
-                    </span>
-                  </div>
-                </div>
-              </form>
-            </div><!-- /.navbar-collapse -->
-          </nav><!-- /navbar -->
+              
+            </div>
+          </nav>
         </div>
       </div>
   </div>
@@ -60,7 +53,9 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.container {
+  padding: 0 15px;
+}
 .row {
   
 }
@@ -95,30 +90,5 @@ li {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
 }
-
-// .dropdown-toggle:after {
-//     margin-left: 8px;
-//     vertical-align: middle;
-//     content: "";
-//     border-top: 8px solid;
-//     border-right: 6px solid transparent;
-//     border-left: 6px solid transparent;
-//     border-bottom: 0;
-//     transition: border-color .25s, color .25s;
-// }
-
-// .dropdown-toggle::after {
-//     display: inline-block;
-//     width: 0;
-//     height: 0;
-//     margin-left: .255em;
-//     vertical-align: .255em;
-//     content: "";
-//     border-top: .3em solid;
-//     border-right: .3em solid transparent;
-//     border-bottom: 0;
-//     border-left: .3em solid transparent;
-// }
-
 
 </style>
